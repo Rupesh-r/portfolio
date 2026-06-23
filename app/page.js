@@ -15,7 +15,7 @@ export default function Home() {
           <span /><span /><span />
         </button>
         <ul className={menuOpen ? 'open' : ''}>
-          {['Services', 'Projects', 'Experience', 'Education', 'Contact'].map(item => (
+          {['Services', 'Projects', 'Experience', 'Skills', 'Education', 'Contact'].map(item => (
             <li key={item}>
               <a href={`#${item.toLowerCase()}`} onClick={() => setMenuOpen(false)}>{item}</a>
             </li>
@@ -39,24 +39,11 @@ export default function Home() {
           </div>
           <div className="hero-right">
             <div className="hero-photo-wrapper">
-              <Image
-                className="hero-photo"
-                src="/photo.jpg"
-                alt="Rupesh Adhikari"
-                width={380}
-                height={420}
-                priority
-              />
+              <Image className="hero-photo" src="/photo.jpg" alt="Rupesh Adhikari" width={380} height={420} priority />
             </div>
             <div className="hero-stats-bar">
-              <div className="mini-stat">
-                <div className="mini-stat-number">25+</div>
-                <div className="mini-stat-label">Projects</div>
-              </div>
-              <div className="mini-stat">
-                <div className="mini-stat-number">5+</div>
-                <div className="mini-stat-label">Years Experience</div>
-              </div>
+              <div className="mini-stat"><div className="mini-stat-number">25+</div><div className="mini-stat-label">Projects</div></div>
+              <div className="mini-stat"><div className="mini-stat-number">5+</div><div className="mini-stat-label">Years Experience</div></div>
             </div>
             <div className="hero-tools">
               {['Zoho CRM', 'HubSpot', 'Salesforce', 'Zapier', 'Microsoft 365', 'Asana'].map(t => (
@@ -79,11 +66,7 @@ export default function Home() {
             { icon: '🤖', title: 'CRM & Automation', desc: 'Custom Zoho, HubSpot, and Salesforce builds. Workflow blueprints, automated invoicing, email sequences, and integrations via Zapier and webhooks.' },
             { icon: '👥', title: 'Client Operations', desc: 'Managing client communications, onboarding workflows, launch coordination, post-launch monitoring, and escalation to technical teams.' },
           ].map(s => (
-            <div key={s.title} className="service-card">
-              <div className="service-icon">{s.icon}</div>
-              <h3>{s.title}</h3>
-              <p>{s.desc}</p>
-            </div>
+            <div key={s.title} className="service-card"><div className="service-icon">{s.icon}</div><h3>{s.title}</h3><p>{s.desc}</p></div>
           ))}
         </div>
       </section>
@@ -100,14 +83,7 @@ export default function Home() {
             { date: 'Aug – Sep 2025', title: 'AI Workflow Automation System', desc: 'Created AI agents for daily research and news tasks with scheduled triggers. Built workflows for task updates, assessment processing, email actions, and notification routing. Connected GoCardless to QuickBooks for automatic invoicing.', tools: ['AI Agents', 'GoCardless', 'QuickBooks', 'Automation'] },
             { date: 'Jan – Feb 2025', title: 'HubSpot Event & Sales Automation', desc: 'Built a multi-step workflow tied to event registration with form-triggered automation, smart content for personalised messaging, automatic payment links, deal creation, and CRM record updates.', tools: ['HubSpot', 'Workflows', 'Smart Content', 'CRM'] },
           ].map(p => (
-            <div key={p.title} className="project-card">
-              <div className="project-tag">{p.date}</div>
-              <h3>{p.title}</h3>
-              <p>{p.desc}</p>
-              <div className="project-tools">
-                {p.tools.map(t => <span key={t}>{t}</span>)}
-              </div>
-            </div>
+            <div key={p.title} className="project-card"><div className="project-tag">{p.date}</div><h3>{p.title}</h3><p>{p.desc}</p><div className="project-tools">{p.tools.map(t => <span key={t}>{t}</span>)}</div></div>
           ))}
         </div>
       </section>
@@ -127,12 +103,24 @@ export default function Home() {
             { date: 'Nov 2023 – Sep 2024', role: 'Operations / Marketing Executive', company: 'Moorland Hotel', desc: 'Managed hotel operations and led marketing campaigns achieving 20% growth in social engagement and increased direct bookings.' },
             { date: 'Feb 2022 – Apr 2023', role: 'Executive Assistant', company: 'Genese Solution', desc: "Managed CTO's international calendar across global teams, produced board packs and executive summaries, and planned strategic events." },
           ].map(e => (
-            <div key={e.role + e.company} className="timeline-item">
-              <div className="timeline-date">{e.date}</div>
-              <div className="timeline-role">{e.role}</div>
-              <div className="timeline-company">{e.company}</div>
-              <div className="timeline-desc">{e.desc}</div>
-            </div>
+            <div key={e.role + e.company} className="timeline-item"><div className="timeline-date">{e.date}</div><div className="timeline-role">{e.role}</div><div className="timeline-company">{e.company}</div><div className="timeline-desc">{e.desc}</div></div>
+          ))}
+        </div>
+      </section>
+
+      {/* SKILLS */}
+      <section id="skills">
+        <div className="section-label">Core Skills</div>
+        <h2 className="section-title">Skills &amp; Tools</h2>
+        <p className="section-desc">A broad toolkit spanning administration, project delivery, CRM platforms, and technical support.</p>
+        <div className="skills-grid">
+          {[
+            { category: 'Administrative & Organisational', skills: ['Complex Diary & Schedule Management', 'Confidential Information Handling', 'Inbox & Communication Oversight', 'Travel Planning & Itinerary Coordination', 'Meeting Scheduling & Minute-Taking', 'Event & Meeting Logistics', 'Task & Deadline Tracking', 'Report & Document Preparation', 'CRM & Database Management'] },
+            { category: 'Project & Operations Support', skills: ['Project Coordination', 'Timeline Monitoring', 'Process Improvement', 'Workflow Optimisation', 'Requirement Gathering', 'Cross-Team Collaboration', 'Status Reporting', 'Follow-Up Management', 'Action Tracking', 'Risk Identification'] },
+            { category: 'Technical & Tools', skills: ['Zoho CRM', 'HubSpot', 'Salesforce', 'Zapier Automation', 'Workflow & Blueprint Design', 'WordPress', 'SSL Installation', 'Google Workspace', 'Microsoft 365', 'Trello', 'Asana', 'Notion', 'Monday.com'] },
+            { category: 'Customer Success & Technical Support', skills: ['System Troubleshooting', 'Product Configuration', 'Onboarding Support', 'Post-Launch Monitoring', 'Pilot Support', 'Technical Documentation', 'Issue Escalation', 'Client Communication', 'Expectation Alignment'] },
+          ].map(group => (
+            <div key={group.category} className="skill-group"><h3>{group.category}</h3><div className="skill-tags">{group.skills.map(s => <span key={s} className="skill-tag">{s}</span>)}</div></div>
           ))}
         </div>
       </section>
@@ -142,16 +130,8 @@ export default function Home() {
         <div className="section-label">Education</div>
         <h2 className="section-title">Academic Background</h2>
         <div className="edu-grid" style={{ marginTop: '2rem' }}>
-          <div className="edu-card">
-            <h3>MSc International Management</h3>
-            <div className="school">UWE Bristol</div>
-            <div className="year">2023 – 2024</div>
-          </div>
-          <div className="edu-card">
-            <h3>Bachelor&apos;s Hotel Management</h3>
-            <div className="school">Purbanchal University</div>
-            <div className="year">2015 – 2019</div>
-          </div>
+          <div className="edu-card"><h3>MSc International Management</h3><div className="school">UWE Bristol</div><div className="year">2023 – 2024</div></div>
+          <div className="edu-card"><h3>Bachelor&apos;s Hotel Management</h3><div className="school">Purbanchal University</div><div className="year">2015 – 2019</div></div>
         </div>
       </section>
 
