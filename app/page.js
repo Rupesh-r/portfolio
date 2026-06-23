@@ -1,10 +1,18 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const sliderRef = useRef(null)
+
+  const scroll = (dir) => {
+    if (sliderRef.current) {
+      const amount = sliderRef.current.offsetWidth * 0.75
+      sliderRef.current.scrollBy({ left: dir === 'left' ? -amount : amount, behavior: 'smooth' })
+    }
+  }
 
   return (
     <>
@@ -99,21 +107,32 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section id="testimonials">
+      <section id="testimonials" className="testimonials-section">
         <div className="section-label">Client Feedback</div>
-        <h2 className="section-title">What Clients Say</h2>
-        <p className="section-desc">All reviews from verified Upwork contracts. 100% Job Success Score across 26 completed jobs.</p>
-        <div className="testimonials-grid">
-          {[
-            { name: 'Laura Taylor', review: "Rupesh was an absolute joy to work with and I highly recommend him if you're looking for a reliable virtual assistant!" },
-            { name: 'Nicole Gibson', review: "Rupesh is an absolute find — he is so thorough, incredibly intelligent and as soon as I can offer him full-time work, it'll be my first ask!" },
-            { name: 'Frances Ly', review: "Rupesh has been incredible to work with. In a short amount of time, he's picked things up quickly and has already made a noticeable impact on how smoothly things run. He's proactive, detail-oriented, and brings a lot of valuable knowledge. He's reliable, easy to communicate with, and genuinely invested in doing good work." },
-            { name: 'Piers Chen', review: 'Rupesh is excellent to work with. An incredibly hard working person with a great attitude to go alongside it. I would recommend him to anyone.' },
-            { name: 'Lucas Vegvary', review: "I truly enjoyed working with Rupesh, he's extremely knowledgeable and works hard on projects and learns quickly. If you're looking for an excellent executive virtual assistant, he's your guy." },
-            { name: 'Lauren Hall', review: "Rupesh was incredible! I'll hire him again in a heartbeat whenever I need support. He was accessible and prompt plus really helped me work through what I actually needed for projects and goals along with then executing tasks. He elevated my online presence and organizational systems." },
-            { name: 'Joseph Randy Murphy', review: 'Rupesh has been a valuable member of our management team. He consistently demonstrated professionalism, reliability, and strong leadership throughout his work with us. His ability to collaborate effectively and contribute was outstanding.' },
-            { name: 'Matthew Stafford', review: 'Rupesh has been excellent and highly recommended. Able to just get on with tasks with clear instructions and requires minimal oversight afterwards. Has been really appreciated.' },
-          ].map(t => (<div key={t.name} className="testimonial-card"><div className="testimonial-stars">★★★★★</div><p>{t.review}</p><div className="testimonial-author">{t.name}</div></div>))}
+        <h2 className="section-title">Verified Upwork Reviews</h2>
+        <p className="section-desc">100% Job Success Score &middot; Top Rated Plus &middot; 17,000+ hours &middot; 26 completed jobs</p>
+        <div className="slider-wrapper">
+          <button className="slider-arrow slider-arrow-left" onClick={() => scroll('left')} aria-label="Previous">&larr;</button>
+          <div className="slider-track" ref={sliderRef}>
+            {[
+              { name: 'Laura Taylor', review: "Rupesh was an absolute joy to work with and I highly recommend him if you're looking for a reliable virtual assistant!", tags: ['Reliable', 'Committed to Quality'] },
+              { name: 'Nicole Gibson', review: "Rupesh is an absolute find \u2014 he is so thorough, incredibly intelligent and as soon as I can offer him full-time work, it'll be my first ask!", tags: ['Detail Oriented', 'Committed to Quality'] },
+              { name: 'Frances Ly', review: "Rupesh has been incredible to work with. In a short amount of time, he's picked things up quickly and has already made a noticeable impact on how smoothly things run. He's proactive, detail-oriented, and brings a lot of valuable knowledge.", tags: ['Proactive', 'Detail Oriented'] },
+              { name: 'Piers Chen', review: 'Rupesh is excellent to work with. An incredibly hard working person with a great attitude to go alongside it. I would recommend him to anyone.', tags: ['Collaborative'] },
+              { name: 'Lucas Vegvary', review: "I truly enjoyed working with Rupesh, he's extremely knowledgeable and works hard on projects and learns quickly. If you're looking for an excellent executive virtual assistant, he's your guy.", tags: ['Collaborative', 'Committed to Quality'] },
+              { name: 'Lauren Hall', review: "Rupesh was incredible! I'll hire him again in a heartbeat. He was accessible and prompt plus really helped me work through what I actually needed for projects and goals. He elevated my online presence and organizational systems.", tags: ['Clear Communicator', 'Professional', 'Reliable'] },
+              { name: 'Joseph Randy Murphy', review: 'Rupesh has been a valuable member of our management team. He consistently demonstrated professionalism, reliability, and strong leadership. His ability to collaborate effectively and contribute was outstanding.', tags: ['Professional', 'Reliable', 'Collaborative'] },
+              { name: 'Matthew Stafford', review: 'Rupesh has been excellent and highly recommended. Able to just get on with tasks with clear instructions and requires minimal oversight afterwards.', tags: ['Committed to Quality', 'Clear Communicator'] },
+            ].map(t => (
+              <div key={t.name} className="review-card">
+                <div className="review-stars">★★★★★</div>
+                <p className="review-text">{t.review}</p>
+                <div className="review-tags">{t.tags.map(tag => <span key={tag} className="review-tag">{tag}</span>)}</div>
+                <div className="review-author">{t.name} <span>via Upwork</span></div>
+              </div>
+            ))}
+          </div>
+          <button className="slider-arrow slider-arrow-right" onClick={() => scroll('right')} aria-label="Next">&rarr;</button>
         </div>
       </section>
 
